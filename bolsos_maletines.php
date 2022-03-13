@@ -115,8 +115,17 @@ $filas = ceil($filas);
                                     <div class="card-content">
                                         <div class="media">
                                             <div class="media-content">
-                                                <p class="title is-4"><?php echo $resultado[$i * 3 + $j]['nombre'] ?></p>
+                                                <p class="title is-4" id="desc-<?php echo $i * 3 + $j < 10 ? "0" . $i * 3 + $j : $i * 3 + $j ?>">
+                                                    <?php echo $resultado[$i * 3 + $j]['nombre'] ?>
+                                                </p>
                                                 <p class="subtitle is-7">(<?php echo $resultado[$i * 3 + $j]['cantidad'] ?> disponibles)</p>
+                                            </div>
+                                            <div class="media-right">
+                                                <p class="subtitle is-4">ID:
+                                                    <span id="id-<?php echo $i * 3 + $j < 10 ? "0" . $i * 3 + $j : $i * 3 + $j ?>">
+                                                        <?php echo $resultado[$i * 3 + $j]['id_producto'] ?>
+                                                    </span>
+                                                </p>
                                             </div>
                                         </div>
                                         <div class="content">
@@ -128,18 +137,18 @@ $filas = ceil($filas);
                                     <div class="card-footer">
                                         <div class="card-footer-item">Precio: <span class="ml-2">$<?php echo $resultado[$i * 3 + $j]['precio'] ?></span></div>
                                         <div class="card-footer-item is-flex is-align-items-center">
-                                            <button class="button is-danger is-small">
+                                            <button class="button is-danger is-small" id="btnM-<?php echo $i * 3 + $j < 10 ? "0" . $i * 3 + $j : $i * 3 + $j ?>">
                                                 -
                                             </button>
-                                            <span class="px-3 mx-1" style="border: 1px solid grey; height:100%; display:flex; align-items:center; justify-content:center">
+                                            <span id="sp-<?php echo $i * 3 + $j < 10 ? "0" . $i * 3 + $j : $i * 3 + $j ?>" class="px-3 mx-1" style="border: 1px solid grey; height:100%; display:flex; align-items:center; justify-content:center">
                                                 0
                                             </span>
-                                            <button class="button is-primary is-small">
+                                            <button class="button is-primary is-small" id="btnS-<?php echo $i * 3 + $j < 10 ? "0" . $i * 3 + $j : $i * 3 + $j ?>">
                                                 +
                                             </button>
                                         </div>
                                         <div class="card-footer-item">
-                                            <button class="button is-success is-small">
+                                            <button class="button is-success is-small" id="btnSh-<?php echo $i * 3 + $j < 10 ? "0" . $i * 3 + $j : $i * 3 + $j ?>">
                                                 <ion-icon name="cart-outline" class="mr-2"></ion-icon>Comprar
                                             </button>
                                         </div>
@@ -159,8 +168,17 @@ $filas = ceil($filas);
                                     <div class="card-content">
                                         <div class="media">
                                             <div class="media-content">
-                                                <p class="title is-4"><?php echo $resultado[$i * 3 + $j]['nombre'] ?></p>
+                                                <p class="title is-4" id="desc-<?php echo $i * 3 + $j < 10 ? "0" . $i * 3 + $j : $i * 3 + $j ?>">
+                                                    <?php echo $resultado[$i * 3 + $j]['nombre'] ?>
+                                                </p>
                                                 <p class="subtitle is-7">(<?php echo $resultado[$i * 3 + $j]['cantidad'] ?> disponibles)</p>
+                                            </div>
+                                            <div class="media-right">
+                                                <p class="subtitle is-4">ID:
+                                                    <span id="id-<?php echo $i * 3 + $j < 10 ? "0" . $i * 3 + $j : $i * 3 + $j ?>">
+                                                        <?php echo $resultado[$i * 3 + $j]['id_producto'] ?>
+                                                    </span>
+                                                </p>
                                             </div>
                                         </div>
                                         <div class="content">
@@ -172,18 +190,18 @@ $filas = ceil($filas);
                                     <div class="card-footer">
                                         <div class="card-footer-item">Precio: <span class="ml-2">$<?php echo $resultado[$i * 3 + $j]['precio'] ?></span></div>
                                         <div class="card-footer-item is-flex is-align-items-center">
-                                            <button class="button is-danger is-small">
+                                            <button class="button is-danger is-small" id="btnM-<?php echo $i * 3 + $j < 10 ? "0" . $i * 3 + $j : $i * 3 + $j ?>">
                                                 -
                                             </button>
-                                            <span class="px-3 mx-1" style="border: 1px solid grey; height:100%; display:flex; align-items:center; justify-content:center">
+                                            <span id="sp-<?php echo $i * 3 + $j < 10 ? "0" . $i * 3 + $j : $i * 3 + $j ?>" class="px-3 mx-1" style="border: 1px solid grey; height:100%; display:flex; align-items:center; justify-content:center">
                                                 0
                                             </span>
-                                            <button class="button is-primary is-small">
+                                            <button class="button is-primary is-small" id="btnS-<?php echo $i * 3 + $j < 10 ? "0" . $i * 3 + $j : $i * 3 + $j ?>">
                                                 +
                                             </button>
                                         </div>
                                         <div class="card-footer-item">
-                                            <button class="button is-success is-small">
+                                            <button class="button is-success is-small" id="btnSh-<?php echo $i * 3 + $j < 10 ? "0" . $i * 3 + $j : $i * 3 + $j ?>">
                                                 <ion-icon name="cart-outline" class="mr-2"></ion-icon>Comprar
                                             </button>
                                         </div>
@@ -197,54 +215,26 @@ $filas = ceil($filas);
         </div>
     </div>
 
+    <div class="modal" id="advertencia">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <article class="message is-danger">
+                <div class="message-header">
+                    <p class="is-size-3">No se puede agregar al carrito</p>
+                    <button class="delete" aria-label="delete"></button>
+                </div>
+                <div class="message-body is-size-5">
+                    Debe añadir productos con el boton (+) para poder agregar productos al carrito.
+                </div>
+            </article>
+        </div>
+    </div>
+
+    <script src="./JS/bolsos_maletines.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-
-            // Get all "navbar-burger" elements
-            const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-
-            // Check if there are any navbar burgers
-            if ($navbarBurgers.length > 0) {
-
-                // Add a click event on each of them
-                $navbarBurgers.forEach(el => {
-                    el.addEventListener('click', () => {
-
-                        // Get the target from the "data-target" attribute
-                        const target = el.dataset.target;
-                        const $target = document.getElementById(target);
-
-                        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-                        el.classList.toggle('is-active');
-                        $target.classList.toggle('is-active');
-
-                    });
-                });
-            }
-
-        });
-        const menuToggle = document.querySelector(".menuToggle");
-        const navigation = document.querySelector(".navigation");
-        const contenido = document.querySelector(".contenido");
-        console.log(contenido);
-        menuToggle.onclick = function() {
-            navigation.classList.toggle("open");
-            contenido.classList.toggle("open");
-        }
-
-        const list = document.querySelectorAll(".list");
-
-        function activeLink() {
-            list.forEach(item => item.classList.remove("active"));
-            this.classList.add('active');
-        }
-        list.forEach(item => item.addEventListener('click', activeLink))
-
-        console.log("<?php echo $resultado[0]['nombre']; ?>");
-        console.log("<?php echo $total_articulos % $articulos_x_fila; ?>");
+        list.forEach(item => item.classList.remove("active"));
+        list[<?php echo $_GET['page']; ?>].classList.add('active');
     </script>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>

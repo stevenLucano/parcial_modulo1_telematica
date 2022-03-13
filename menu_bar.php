@@ -12,7 +12,15 @@
     <div class="navigation has-background-white-bis">
         <div class="menuToggle"></div>
         <ul>
-            <li class="list active" style="--clr:#f06292;">
+            <li class="list active" style="--clr:#d50000;">
+                <a href="./index.php?page=0">
+                    <span class="icon">
+                        <ion-icon name="home-outline"></ion-icon>
+                    </span>
+                    <span class="text">Home</span>
+                </a>
+            </li>
+            <li class="list" style="--clr:#f06292;">
                 <a href="#">
                     <span class="icon">
                         <ion-icon name="woman-outline"></ion-icon>
@@ -53,7 +61,7 @@
                 </a>
             </li>
             <li class="list" style="--clr:#00c853;">
-                <a href="./bolsos_maletines.php">
+                <a href="./bolsos_maletines.php?page=6">
                     <span class="icon">
                         <ion-icon name="bag-handle-outline"></ion-icon>
                     </span>
@@ -61,7 +69,7 @@
                 </a>
             </li>
             <li class="list" style="--clr:#00b8d4;">
-                <a href="#">
+                <a href="./carrito.php?page=7">
                     <span class="icon">
                         <ion-icon name="cart-outline"></ion-icon>
                     </span>
