@@ -1,6 +1,8 @@
 <?php
 //Se incluye el menu
 include 'menu_bar.php';
+//Se inclute el nav_bar
+include_once 'nav_bar.php';
 //Se realiza la conexion con la base de datos
 include_once 'conexion.php';
 
@@ -23,10 +25,10 @@ $filas = ceil($filas);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html style="background-color: #283593;">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset=" UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
@@ -38,71 +40,13 @@ $filas = ceil($filas);
 </head>
 
 <body>
-    <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-            <a class="navbar-item" href="#">
-                <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
-            </a>
-
-            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </a>
-        </div>
-
-        <div id="navbarBasicExample" class="navbar-menu">
-            <div class="navbar-start">
-                <a class="navbar-item">
-                    Home
-                </a>
-
-                <a class="navbar-item">
-                    Documentation
-                </a>
-
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link">
-                        More
-                    </a>
-
-                    <div class="navbar-dropdown">
-                        <a class="navbar-item">
-                            About
-                        </a>
-                        <a class="navbar-item">
-                            Jobs
-                        </a>
-                        <a class="navbar-item">
-                            Contact
-                        </a>
-                        <hr class="navbar-divider">
-                        <a class="navbar-item">
-                            Report an issue
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="navbar-end">
-                <div class="navbar-item">
-                    <div class="buttons">
-                        <a class="button is-primary">
-                            <strong>Sign up</strong>
-                        </a>
-                        <a class="button is-light">
-                            Log in
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
 
     <div class="section contenido">
         <div class="container">
+            <p class="title is-1 has-text-centered has-text-white">Bolsos - Maletines</p>
+            <p class="is-size-4 has-text-centered has-text-white">Elija el articulo que desee comprar y añadalo al carrito de compras</p>
             <?php for ($i = 0; $i < $filas; $i++) : ?>
-                <div class="columns is-variable is-8">
+                <div class="columns is-variable is-8 mt-4" style="background-color: rgb(228, 231, 250); border-radius: 3px">
                     <?php if ($i == $filas - 1) : ?>
                         <?php for ($j = 0; $j < $total_articulos % $articulos_x_fila; $j++) : ?>
                             <div class="column is-one-third">
@@ -129,13 +73,19 @@ $filas = ceil($filas);
                                             </div>
                                         </div>
                                         <div class="content">
-                                            <div class="has-text-justified">
+                                            <div class="has-text-justified contenedor-texto">
                                                 <?php echo $resultado[$i * 3 + $j]['descripcion'] ?>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="card-footer">
-                                        <div class="card-footer-item">Precio: <span class="ml-2">$<?php echo $resultado[$i * 3 + $j]['precio'] ?></span></div>
+                                        <div class="card-footer-item">Precio:
+                                            <span class="ml-2 is-flex">
+                                                $<span id="price-<?php echo $i * 3 + $j < 10 ? "0" . $i * 3 + $j : $i * 3 + $j ?>">
+                                                    <?php echo $resultado[$i * 3 + $j]['precio'] ?>
+                                                </span>
+                                            </span>
+                                        </div>
                                         <div class="card-footer-item is-flex is-align-items-center">
                                             <button class="button is-danger is-small" id="btnM-<?php echo $i * 3 + $j < 10 ? "0" . $i * 3 + $j : $i * 3 + $j ?>">
                                                 -
@@ -182,13 +132,19 @@ $filas = ceil($filas);
                                             </div>
                                         </div>
                                         <div class="content">
-                                            <div class="has-text-justified">
+                                            <div class="has-text-justified contenedor-texto">
                                                 <?php echo $resultado[$i * 3 + $j]['descripcion'] ?>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="card-footer">
-                                        <div class="card-footer-item">Precio: <span class="ml-2">$<?php echo $resultado[$i * 3 + $j]['precio'] ?></span></div>
+                                        <div class="card-footer-item">Precio:
+                                            <span class="ml-2 is-flex">
+                                                $<span id="price-<?php echo $i * 3 + $j < 10 ? "0" . $i * 3 + $j : $i * 3 + $j ?>">
+                                                    <?php echo $resultado[$i * 3 + $j]['precio'] ?>
+                                                </span>
+                                            </span>
+                                        </div>
                                         <div class="card-footer-item is-flex is-align-items-center">
                                             <button class="button is-danger is-small" id="btnM-<?php echo $i * 3 + $j < 10 ? "0" . $i * 3 + $j : $i * 3 + $j ?>">
                                                 -

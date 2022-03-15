@@ -1,20 +1,23 @@
 <?php
 //Se incluye el menu
 include_once 'menu_bar.php';
+//Se inclute el nav_bar
+include_once 'nav_bar.php';
 //Se realiza la conexion con la base de datos
 include_once 'conexion.php';
 
 //Se llama a todos los articulos de la tabla lucano_bolsos
-$sql = 'SELECT * FROM lucano_compra_temporal';
+$sql = 'SELECT * FROM lucano_compra_temporal order by id_producto';
 $sentencia = $pdo->prepare($sql);
 $sentencia->execute();
 
 //En la variable resultado se obtiene todos los articulos en forma de array
 $resultado = $sentencia->fetchAll();
+$total = 0;
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html style="background-color: #283593;">
 
 <head>
     <meta charset="UTF-8">
@@ -29,88 +32,52 @@ $resultado = $sentencia->fetchAll();
 </head>
 
 <body>
-    <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-            <a class="navbar-item" href="#">
-                <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
-            </a>
-
-            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </a>
-        </div>
-
-        <div id="navbarBasicExample" class="navbar-menu">
-            <div class="navbar-start">
-                <a class="navbar-item">
-                    Home
-                </a>
-
-                <a class="navbar-item">
-                    Documentation
-                </a>
-
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link">
-                        More
-                    </a>
-
-                    <div class="navbar-dropdown">
-                        <a class="navbar-item">
-                            About
-                        </a>
-                        <a class="navbar-item">
-                            Jobs
-                        </a>
-                        <a class="navbar-item">
-                            Contact
-                        </a>
-                        <hr class="navbar-divider">
-                        <a class="navbar-item">
-                            Report an issue
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="navbar-end">
-                <div class="navbar-item">
-                    <div class="buttons">
-                        <a class="button is-primary">
-                            <strong>Sign up</strong>
-                        </a>
-                        <a class="button is-light">
-                            Log in
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
-
     <div class="section contenido ml-6">
         <div class="container">
-            <p class="is-size-1">Carrito de compras</p>
-            <table class="table table is-fullwidth is-striped">
-                <thead>
-                    <tr>
-                        <th>ID del producto</th>
-                        <th>Descripción</th>
-                        <th>Cantidad</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($resultado as $articulo) : ?>
+            <p class="is-size-1 has-text-white has-text-centered mb-5">Carrito de compras</p>
+            <?php if (count($resultado)) : ?>
+                <table class="table table is-fullwidth is-striped">
+                    <thead>
                         <tr>
-                            <td><?php echo $articulo['id_producto'] ?></td>
-                            <td><?php echo $articulo['descripcion'] ?></td>
-                            <td><?php echo $articulo['cantidad'] ?></td>
+                            <th>ID del producto</th>
+                            <th>Descripción</th>
+                            <th>Cantidad</th>
+                            <th>Precio por unidad</th>
+                            <th>Precio total</th>
                         </tr>
-                    <?php endforeach ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($resultado as $articulo) :
+                            $total = $total + $articulo['precio'];
+                        ?>
+                            <tr>
+                                <td><?php echo $articulo['id_producto'] ?></td>
+                                <td><?php echo $articulo['descripcion'] ?></td>
+                                <td><?php echo $articulo['cantidad'] ?></td>
+                                <td>$<?php echo $articulo['precio'] / $articulo['cantidad'] ?></td>
+                                <td>$<?php echo $articulo['precio'] ?></td>
+                            </tr>
+                        <?php endforeach ?>
+                        <tr>
+                            <td colspan=4>Total:</td>
+                            <td>$<?php echo $total ?></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="level-right">
+                    <a href="./vaciar_carrito.php" class="button is-danger is-rounded">Vaciar Carrito</a>
+                </div>
+            <?php else : ?>
+                <article class="message is-info">
+                    <div class="message-header">
+                        <p class="is-size-3">Carrito vacío</p>
+                    </div>
+                    <div class="message-body">
+                        <p class="is-size-5">No ha agregado ningún articulo a su carrito de compras.</p>
+                        <p class="is-size-5">Empiece a comprar ingresando <a href="./index.php?page=0"><b>Aquí</b></a>.</p>
+                    </div>
+                </article>
+            <?php endif ?>
         </div>
     </div>
 

@@ -1,0 +1,86 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+.contenido-menu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(228, 231, 250);
+    border-radius: 3px;
+    box-shadow: 0 0 0 white;
+    transition: 0.5s;
+}
+.contenido-menu:hover{
+    box-shadow: -3px 3px 5px white,
+    -3px 3px 10px white,
+    -3px 3px 15px white;
+}
+.button_ani{
+    position: relative;
+    padding: 20px 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(116, 116, 116, 0.575);
+    margin: 40px;
+    transition: 1s;
+    overflow: hidden;
+    width: 500px;
+}
+.button_ani:hover{
+    background: var(--clr);
+    box-shadow: 0 0 10px var(--clr),
+    0 0 30px var(--clr),
+    0 0 60px var(--clr),
+    0 0 100px var(--clr);
+}
+.button_ani::before{
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 700%;
+    background: #283593;
+    transition: 0.5s;
+    animation: animate 3s linear infinite;
+    animation-delay: calc(0.33s*var(--i));
+}
+.button_ani:hover::before{
+    width: 120%;
+    background: var(--clr);
+}
+@keyframes animate{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+.button_ani::after{
+    content: '';
+    position: absolute;
+    inset: 5px;
+    background-color: #5b58fa;
+    transition: 0.5s;
+}
+.button_ani:hover::after{
+    background: var(--clr);
+}
+.button_ani span{
+    position: relative;
+    z-index: 2;
+    font-size: 1.8em;
+    color: black;
+    opacity: 0.5;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    transition: 0.5s;
+}
+.button_ani:hover span{
+    opacity: 1;
+    color: #fff;
+}

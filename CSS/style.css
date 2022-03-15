@@ -1,5 +1,5 @@
-/* body{
-    background-color: blue !important;
+/* html{
+    background: blue !important;
 } */
 
 .section.contenido{
@@ -18,4 +18,7 @@
 }
 .card:hover{
     box-shadow: 0 0px 15px #333;
+}
+.has-text-justified.contenedor-texto{
+    height: 180px;
 }

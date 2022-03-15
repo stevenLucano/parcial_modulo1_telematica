@@ -64,7 +64,9 @@ function cambiarCantidad(e){
             const id = document.getElementById(`id-${"" + e.target.id[e.target.id.length-2] + e.target.id[e.target.id.length-1]}`);
             const desc = document.getElementById(`desc-${"" + e.target.id[e.target.id.length-2] + e.target.id[e.target.id.length-1]}`);
             const span = document.getElementById(`sp-${"" + e.target.id[e.target.id.length-2] + e.target.id[e.target.id.length-1]}`);
-            const urlAgregar = `./agregarCarrito.php?id=${id.innerHTML.trim()}&desc=${desc.innerHTML.trim()}&cant=${span.innerHTML}`;
+            const precio = document.getElementById(`price-${"" + e.target.id[e.target.id.length-2] + e.target.id[e.target.id.length-1]}`);
+            // console.log(precio.innerHTML)
+            const urlAgregar = `./agregarCarrito.php?id=${id.innerHTML.trim()}&desc=${desc.innerHTML.trim()}&cant=${span.innerHTML}&precio=${precio.innerHTML.trim()}`;
             window.location.href = urlAgregar;
         }
     } 
