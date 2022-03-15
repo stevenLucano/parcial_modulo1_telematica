@@ -16,3 +16,23 @@ function activeLink() {
     this.classList.add('active');
 }
 list.forEach(item => item.addEventListener('click', activeLink));
+
+//Se llama el elemento con el id="tabla-articulos"
+const tabla = document.getElementById("tabla-articulos");
+
+tabla.addEventListener('click', e=>{
+    eliminarArticulo(e);
+})
+
+function eliminarArticulo(e){
+    let idBoton = "" + e.target.id[e.target.id.length-2] + e.target.id[e.target.id.length-1];
+    //Se detecta si se oprime el boton "el#-##"
+    if(e.target.id == `el1-${idBoton}` || e.target.id == `el2-${idBoton}` || e.target.id == `el3-${idBoton}`){
+        idBoton = parseInt(idBoton,10);
+        const idProducto = document.getElementById(idBoton);
+
+        //Se crea la URL con el id y se redirecciona a eliminarArticulo.php
+        const urlEliminar = `./eliminarArticulo.php?id=${idProducto.innerHTML.trim()}`;
+        window.location.href = urlEliminar;
+    }
+}

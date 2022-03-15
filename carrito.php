@@ -36,14 +36,15 @@ $total = 0;
         <div class="container">
             <p class="is-size-1 has-text-white has-text-centered mb-5">Carrito de compras</p>
             <?php if (count($resultado)) : ?>
-                <table class="table table is-fullwidth is-striped">
+                <table class="table table is-fullwidth is-striped" id="tabla-articulos">
                     <thead>
                         <tr>
-                            <th>ID del producto</th>
+                            <th class="has-text-centered">ID</th>
                             <th>Descripción</th>
-                            <th>Cantidad</th>
-                            <th>Precio por unidad</th>
-                            <th>Precio total</th>
+                            <th class="has-text-centered">Cantidad</th>
+                            <th class="has-text-centered">Precio por unidad</th>
+                            <th class="has-text-centered">Precio total</th>
+                            <th class="has-text-centered">Eliminar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,16 +52,26 @@ $total = 0;
                             $total = $total + $articulo['precio'];
                         ?>
                             <tr>
-                                <td><?php echo $articulo['id_producto'] ?></td>
+                                <td class="has-text-centered" id="<?php echo $articulo['id_producto'] ?>">
+                                    <?php echo $articulo['id_producto'] ?>
+                                </td>
                                 <td><?php echo $articulo['descripcion'] ?></td>
-                                <td><?php echo $articulo['cantidad'] ?></td>
-                                <td>$<?php echo $articulo['precio'] / $articulo['cantidad'] ?></td>
-                                <td>$<?php echo $articulo['precio'] ?></td>
+                                <td class="has-text-centered"><?php echo $articulo['cantidad'] ?></td>
+                                <td class="has-text-centered">$<?php echo $articulo['precio'] / $articulo['cantidad'] ?></td>
+                                <td class="has-text-centered">$<?php echo $articulo['precio'] ?></td>
+                                <td class="has-text-centered">
+                                    <button class="button is-danger is-small" id="el1-<?php echo $articulo['id_producto'] < 10 ? "0" . $articulo['id_producto'] : $articulo['id_producto'] ?>">
+                                        <span id="el2-<?php echo $articulo['id_producto'] < 10 ? "0" . $articulo['id_producto'] : $articulo['id_producto'] ?>">
+                                            <ion-icon name="close-outline" id="el3-<?php echo $articulo['id_producto'] < 10 ? "0" . $articulo['id_producto'] : $articulo['id_producto'] ?>"></ion-icon>
+                                        </span>
+                                    </button>
+                                </td>
                             </tr>
                         <?php endforeach ?>
                         <tr>
-                            <td colspan=4>Total:</td>
-                            <td>$<?php echo $total ?></td>
+                            <td colspan="3"></td>
+                            <th class="has-text-centered">Total:</th>
+                            <th class="has-text-centered">$<?php echo $total ?></th>
                         </tr>
                     </tbody>
                 </table>
