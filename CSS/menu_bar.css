@@ -9,7 +9,6 @@ html{
 }
 .navigation{
     position: fixed;
-    /* inset: 20px; */
     bottom: 0;
     height: 94.3vh;
     width: 75px;

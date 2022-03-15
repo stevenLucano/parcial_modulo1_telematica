@@ -14,7 +14,6 @@ $sentencia->execute();
 //En la variable resultado se obtiene todos los articulos en forma de array
 $resultado = $sentencia->fetchAll();
 
-//
 ?>
 <!DOCTYPE html>
 <html style="background-color: #283593;">
@@ -31,7 +30,7 @@ $resultado = $sentencia->fetchAll();
     <div class="section contenido">
         <div class="container">
             <p class="title is-1 has-text-centered has-text-white">¡Bienvenido a <b>Lucano's Shop</b>!</p>
-            <p class="is-size-4 has-text-centered has-text-white mb-4">Elija la opción que desees visitar:</p>
+            <p class="is-size-4 has-text-centered has-text-white mb-4">Elige la opción que desees visitar:</p>
             <div class="contenido-menu">
                 <div class="columns">
                     <div class="column">
@@ -88,12 +87,8 @@ $resultado = $sentencia->fetchAll();
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-
-
-
 
     <script>
         const menuToggle = document.querySelector(".menuToggle");

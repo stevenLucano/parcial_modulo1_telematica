@@ -1,6 +1,6 @@
 <?php
 //Se incluye el menu
-include 'menu_bar.php';
+include_once 'menu_bar.php';
 //Se inclute el nav_bar
 include_once 'nav_bar.php';
 //Se realiza la conexion con la base de datos
@@ -40,14 +40,13 @@ $filas = ceil($filas);
 </head>
 
 <body>
-
     <div class="section contenido">
         <div class="container">
             <p class="title is-1 has-text-centered has-text-white">Bolsos - Maletines</p>
-            <p class="is-size-4 has-text-centered has-text-white">Elija el articulo que desee comprar y añadalo al carrito de compras</p>
+            <p class="is-size-4 has-text-centered has-text-white">Elige el articulo que desees comprar y añadelo al carrito de compras</p>
             <?php for ($i = 0; $i < $filas; $i++) : ?>
                 <div class="columns is-variable is-8 mt-4" style="background-color: rgb(228, 231, 250); border-radius: 3px">
-                    <?php if ($i == $filas - 1) : ?>
+                    <?php if ($i == $filas - 1 && ($total_articulos % $articulos_x_fila) != 0) : ?>
                         <?php for ($j = 0; $j < $total_articulos % $articulos_x_fila; $j++) : ?>
                             <div class="column is-one-third">
                                 <div class="card">

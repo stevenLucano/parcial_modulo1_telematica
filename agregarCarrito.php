@@ -1,7 +1,6 @@
 <?php
 //Se inicia la conexion con la base de datos
 include_once 'conexion.php';
-echo "Hola como estamos";
 
 if ($_GET) {
     //Se obtienen los datos enviados por el metodo GET

@@ -1,29 +1,9 @@
-//Inicializacion del navBar de Bulma CSS
-document.addEventListener('DOMContentLoaded', () => {
-    // Get all "navbar-burger" elements
-    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-    // Check if there are any navbar burgers
-    if ($navbarBurgers.length > 0) {
-        // Add a click event on each of them
-        $navbarBurgers.forEach(el => {
-            el.addEventListener('click', () => {
-                // Get the target from the "data-target" attribute
-                const target = el.dataset.target;
-                const $target = document.getElementById(target);
-
-                // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-                el.classList.toggle('is-active');
-                $target.classList.toggle('is-active');
-            });
-        });
-    }
-});
-
 //Se realiza el respectivo proceso para realizar la animación del menú
 const menuToggle = document.querySelector(".menuToggle");
 const navigation = document.querySelector(".navigation");
 const contenido = document.querySelector(".contenido");
 
+//Al realizar click en el elemento menuToggle se agrega y se quita una clase open
 menuToggle.onclick = function() {
     navigation.classList.toggle("open");
     contenido.classList.toggle("open");
@@ -43,35 +23,41 @@ contenido.addEventListener('click', e => {
 });
 
 function cambiarCantidad(e){
-    console.log(e.target.id);
+    //Si se clickea el boton con la clase 'is-danger' (-)
     if(e.target.classList.contains('is-danger')){
         const span = document.getElementById(`sp-${"" + e.target.id[e.target.id.length-2] + e.target.id[e.target.id.length-1]}`);
         if(span.innerHTML>0){
             span.innerHTML--;
         }
-    } else if(e.target.classList.contains('is-primary')){
+    } 
+    //Si se clickea el boton con la clase 'is-primary' (+)
+    else if(e.target.classList.contains('is-primary')){
         const span = document.getElementById(`sp-${"" + e.target.id[e.target.id.length-2] + e.target.id[e.target.id.length-1]}`);
         if(span.innerHTML<99){
             span.innerHTML++;
         }
-    } else if(e.target.classList.contains('is-success')){
+    } 
+    //Si se clickea el boton con la clase 'is-success' (Comprar)
+    else if(e.target.classList.contains('is-success')){
+        //Si la cantidad a comprar es 0
         const span = document.getElementById(`sp-${"" + e.target.id[e.target.id.length-2] + e.target.id[e.target.id.length-1]}`);
         if(span.innerHTML == 0){
-            console.log("No se puede comprar ome");
             const adver = document.getElementById('advertencia');
             adver.classList.add('is-active');
-        } else {
+        } 
+        //De lo contrario se envian los datos a agregarCarrito.php mediante metodo GET
+        else {
             const id = document.getElementById(`id-${"" + e.target.id[e.target.id.length-2] + e.target.id[e.target.id.length-1]}`);
             const desc = document.getElementById(`desc-${"" + e.target.id[e.target.id.length-2] + e.target.id[e.target.id.length-1]}`);
-            const span = document.getElementById(`sp-${"" + e.target.id[e.target.id.length-2] + e.target.id[e.target.id.length-1]}`);
             const precio = document.getElementById(`price-${"" + e.target.id[e.target.id.length-2] + e.target.id[e.target.id.length-1]}`);
-            // console.log(precio.innerHTML)
+
             const urlAgregar = `./agregarCarrito.php?id=${id.innerHTML.trim()}&desc=${desc.innerHTML.trim()}&cant=${span.innerHTML}&precio=${precio.innerHTML.trim()}`;
             window.location.href = urlAgregar;
         }
     } 
 }
 
+//Se llama al elemento con el id = "advertencia"
 const modal = document.getElementById('advertencia');
 
 //Funcion para cerrar el modal
@@ -79,6 +65,7 @@ modal.addEventListener('click',e => {
     cerrarModal(e);
 })
 
+//Se elimina la clase 'is-active' y de esta manera se cierra el modal
 function cerrarModal(e){
     if(e.target.classList.contains('delete')){
         const adver = document.getElementById('advertencia');
